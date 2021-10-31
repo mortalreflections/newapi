@@ -10,9 +10,12 @@ from datetime import datetime as dt ,timedelta
 app = Flask(__name__)
 ENV = 'dev'
 
+app.config['SECRET_KEY'] = 'thisissecret'
+base_dir=os.path.abspath(os.path.dirname(__file__))
+
 if ENV == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + +os.path.join(base_dir , "dbnew.sqlite")
 else:
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
